@@ -181,6 +181,14 @@ jobs:
           buildPlatform: '$(BuildPlatform)'	
           buildConfiguration: '$(_BuildConfig)'	
         condition: always()
+
+      - task: PublishBuildArtifacts@1
+        displayName: Publish Test output 
+        inputs: 
+          pathToPublish: '$(Build.SourcesDirectory)/src/Tests/dotnet-new.Tests/Approvals'
+          artifactName: drop 
+          continueOnError: true 
+          condition: always()
   
       - task: CopyFiles@2	
         displayName: Gather Logs	
